@@ -50,16 +50,62 @@
   background-color: #0e1c36;
   color: #fff;
 }
-/* CSS untuk mengganti warna font pada placeholder */
+
 #NIK::placeholder {
-  color: #797979; /* Ganti warna sesuai dengan keinginan Anda */
+  color: #797979;
 }
 
-/* Ganti warna font placeholder untuk elemen dengan ID "password" */
 #password::placeholder {
-  color: #797979; /* Ganti warna sesuai dengan keinginan Anda */
+  color: #797979;
 }
 
 a {
   text-decoration: none;
+}
+
+.container-history {
+  width: 100px;
+}
+
+.tanggal-history {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.center-element {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  width: 98%;
+}
+
+.app-header {
+  background-color: #9663fe;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.back-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.header-title {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  flex-grow: 1;
 }
