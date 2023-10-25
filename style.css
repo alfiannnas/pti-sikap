@@ -64,7 +64,7 @@ a {
 }
 
 .container-history {
-  width: 100px;
+  width: 300px;
 }
 
 .tanggal-history {
@@ -108,4 +108,17 @@ a {
   color: #fff;
   text-align: center;
   flex-grow: 1;
+}
+
+.margin-left {
+  margin-left: 20px;
+}
+
+.icon1 {
+  background-image: url("calendar-outline.svg");
+  background-position: right;
+  margin-right: 40px;
+  background-size: 33px;
+  background-repeat: no-repeat;
+  border-radius: 8px;
 }
