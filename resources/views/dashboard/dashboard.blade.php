@@ -62,7 +62,7 @@
         <img width="30" height="30" src="{{ asset("assets/img/mingcute_exit-door-line.png") }}" alt="" />
         <div class="ms-2 d-flex flex-column justify-content-center align-items-start">
           <div class="fs-6 fw-bold">Hadir</div>
-          <div class="test fw-bold days">{{ $rekap->jmlhadir }} Hari</div>
+          <div class="test fw-bold days">{{ $rekap->jmlhadir }} Har</div>
         </div>
       </div>
     </div>
