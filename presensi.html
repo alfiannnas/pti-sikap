@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/style-dashboard.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+
+      .app-header {
+        background-color: #9663fe;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      .back-button {
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .header-title {
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      .webcam-capture,
+      .webcam-capture video {
+        width: 50% !important;
+        height: auto !important;
+        border-radius: 15px;
+        margin: 15px 0;
+      }
+
+      /* Tambahkan kode berikut untuk menengahkan video */
+      .webcam-capture {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%; /* Tambahkan lebar maksimum */
+        margin: 0 auto; /* Tambahkan margin auto untuk mengatur elemen di tengah */
+      }
+
+      #map {
+        height: 200px;
+      }
+
+      #absen {
+        width: 95%;
+      }
+
+      @media (max-width: 767px) {
+        .webcam-capture,
+        .webcam-capture video {
+          width: 95% !important; /* Ubah lebar video menjadi 100% pada layar kecil */
+        }
+
+        #map {
+          height: 380px;
+          border-radius: 15px; /* Sesuaikan tinggi peta untuk tampilan pada layar kecil */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="dahsboard-karyawan.html" class="back-button">
+        <?xml version="1.0" ?><!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+        <svg height="32px" id="Layer_1" style="enable-background: new 0 0 32 32" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path
+            d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"
+            fill="#ffffff"
+          />
+        </svg>
+      </a>
+      <h1 class="header-title">Presensi</h1>
+    </header>
+
+    <div class="row">
+      <div class="col">
+        <input type="hide" id="lokasi" style="display: none" />
+        <div class="webcam-capture"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <button id="absen" class="btn btn-primary btn-block">Absen Masuk</button>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <div class="container-fluid bottom-bar bg-white d-flex justify-content-evenly align-items-center">
+      <a href="dahsboard-karyawan.html" class="d-flex flex-column justify-content-center align-items-center menu">
+        <img width="25" height="25" src="assets/image/home.png" alt="" />
+        <div class="menu-text">Home</div>
+      </a>
+      <a href="#" class="d-flex flex-column justify-content-center align-items-center menu">
+        <img width="25" height="25" src="assets/image/presensi.png" alt="" />
+        <div class="menu-text selected">Presensi</div>
+      </a>
+      <a href="#" class="d-flex flex-column justify-content-center align-items-center menu">
+        <img width="25" height="25" src="assets/image/cuti.png" alt="" />
+        <div class="menu-text">Cuti</div>
+      </a>
+      <a href="#" class="d-flex flex-column justify-content-center align-items-center menu">
+        <img width="25" height="25" src="assets/image/history.png" alt="" />
+        <div class="menu-text">History</div>
+      </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"
+      integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      Webcam.set({
+        height: 480,
+        width: 640,
+        image_format: "jpeg",
+        jpeg_quality: 80,
+      });
+
+      Webcam.attach(".webcam-capture");
+
+      var lokasi = document.getElementById("lokasi");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      }
+
+      function successCallback(position) {
+        lokasi.value = position.coords.latitude + "," + position.coords.longitude;
+        var map = L.map("map").setView([position.coords.latitude, position.coords.longitude], 13);
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+
+        var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+
+        var circle = L.circle([-6.397319890760971, 106.83686828415709], {
+          color: "red",
+          fillColor: "#f03",
+          fillOpacity: 0.5,
+          radius: 20,
+        }).addTo(map);
+      }
+
+      function errorCallback() {}
+
+      $("#absen").click(function (e) {
+        Webcam.snap(function (uri) {
+          image = uri;
+        });
+        var lokasi = $("#lokasi").val();
+        $.ajax({
+          type: "POST",
+          url: "/presensi/store",
+          data: {
+            _token: "{{ csrf_token() }}",
+            image: image,
+            lokasi: lokasi,
+          },
+          cache: false,
+          success: function (respond) {
+            var status = respond.split("|");
+            if (status[0] == "Success") {
+              alert(status[1]);
+              setTimeout("location.href='/dashboard'", 2000);
+            } else if (status == "Error") {
+              alert(status[1]);
+            } else {
+              alert(status[1]);
+            }
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
