@@ -200,3 +200,8 @@ a {
   background-repeat: no-repeat;
   border-radius: 8px;
 }
+
+.container-fluid {
+  background-color: black;
+  margin: 10px;
+}
