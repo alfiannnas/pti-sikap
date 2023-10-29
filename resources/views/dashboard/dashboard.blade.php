@@ -13,7 +13,7 @@
   <div class="header d-flex justify-content-between py-2">
     <img width="100" height="100" class="img-fluid" src="{{ asset("assets/img/logo.png") }}" alt="" />
     <div class="d-flex align-items-center mx-3">
-      <img class="mx-2 img-fluid" width="40" height="40" src="{{ asset("assets/img/profil.png") }}" alt="" /> 
+      <img class="mx-2 img-fluid" width="40" height="40" src="{{ asset("assets/img/profil.png") }}" alt="" />
       <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">{{ Auth::guard('karyawan')->user()->nama }} <i class="fa fa-caret-down"></i></button>
         <div id="myDropdown" class="dropdown-content">
