@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>SIKAP!</title>
+    <link rel="stylesheet" href= {{ asset("assets/css/style-dashboard.css") }} />
     <link rel="icon" href="{{ asset("assets/img/logo.png") }}"/>
     @yield('head')
 </head>

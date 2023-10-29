@@ -29,4 +29,11 @@ Route::middleware(['guest:karyawan'])->group(function (){
 Route::middleware(['auth:karyawan'])->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/proseslogout', [AuthController::class, 'prosesLogout']);
+
+    Route::get('/presensi/create', [PresensiController::class, 'create']);
+    Route::post('/presensi/store', [PresensiController::class, 'store']);
+
+    Route::get('/history', [HistoryController::class, 'history']);
+    Route::post('/gethistori', [HistoryController::class, 'gethistori']);
+    
 });
