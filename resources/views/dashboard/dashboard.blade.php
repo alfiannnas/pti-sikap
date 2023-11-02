@@ -13,7 +13,7 @@
   <div class="header d-flex justify-content-between py-2">
     <img width="100" height="100" class="img-fluid" src="{{ asset("assets/img/logo.png") }}" alt="" />
     <div class="d-flex align-items-center mx-3">
-      <img class="mx-2 img-fluid" width="40" height="40" src="{{ asset("assets/img/profil.png") }}" alt="" />
+      <img class="mx-2 img-fluid" width="40" height="40" src="{{ asset("assets/img/profil.png") }}" alt="" /> 
       <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">{{ Auth::guard('karyawan')->user()->nama }} <i class="fa fa-caret-down"></i></button>
         <div id="myDropdown" class="dropdown-content">
@@ -40,13 +40,13 @@
     </div>
   </div>
   <div class="mt-4 w-100 status-container d-flex justify-content-between gx-0">
-    <div class="status bg-danger rounded-4 d-flex flex-column justify-content-center shadow">
+    <div class="status {{ $presensihariini == null ? 'bg-danger' : 'bg-success' }} rounded-4 d-flex flex-column justify-content-center shadow">
       <div class="small-font fw-bolder ms-3 text-white">Absen Masuk</div>
-      <div class="medium-font fw-bolder ms-3 text-white"><span>{{ $presensihariini != null ? $presensihariini->jam_in : 'Anda Belum Absen' }}</span></div>
+      <div class="medium-font fw-bolder ms-3 text-white"><span>{{ $presensihariini!= null ? $presensihariini->jam_in : 'Anda Belum Absen' }}</span></div>
     </div>
-    <div class="status bg-danger rounded-4 d-flex flex-column justify-content-center shadow">
+    <div class="status {{ $cek == null ? 'bg-danger' : 'bg-success' }} rounded-4 d-flex flex-column justify-content-center shadow">
       <div class="small-font fw-bolder ms-3 text-white">Absen Pulang</div>
-      <div class="medium-font fw-bolder ms-3 text-white">{{ $presensihariini != null ? $presensihariini->jam_out : 'Anda Belum Absen' }}</div>
+      <div class="medium-font fw-bolder ms-3 text-white">{{ $presensihariini!= null ? $presensihariini->jam_out : 'Anda Belum Absen' }}</div>
     </div>
   </div>
   <div class="small-font fw-bolder my-4">
@@ -58,7 +58,7 @@
         <img width="30" height="30" src="{{ asset("assets/img/mingcute_exit-door-line.png") }}" alt="" />
         <div class="ms-2 d-flex flex-column justify-content-center align-items-start">
           <div class="fs-6 fw-bold">Hadir</div>
-          <div class="test fw-bold days">{{ $rekap->jmlhadir }} Hari</div>
+          <div class="test fw-bold days">{{ $rekap->jmlhadir != null ? $rekap->jmlhadir : "0" }} Hari</div>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
         <img width="30" height="30" src="{{ asset("assets/img/iconamoon_profile-fill.png") }}" alt="" />
         <div class="ms-2 d-flex flex-column justify-content-center align-items-start">
           <div class="fs-6 fw-bold">Izin</div>
-          <div class="test fw-bold days">0 Hari</div>
+          <div class="test fw-bold days">{{ $rekapizin->jmlizin != null ? $rekapizin->jmlizin : "0" }} Hari</div>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
         <img width="30" height="30" src="{{ asset("assets/img/clarity_sad-face-solid.png") }}" alt="" />
         <div class="ms-2 d-flex flex-column justify-content-center align-items-start">
           <div class="fs-6 fw-bold">Sakit</div>
-          <div class="test fw-bold days">0 Hari</div>
+          <div class="test fw-bold days">{{ $rekapizin->jmlsakit != null ? $rekapizin->jmlsakit : "0" }} Hari</div>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
         <img width="30" height="30" src="{{ asset("assets/img/mdi_clock-outline.png") }}" alt="" />
         <div class="ms-2 d-flex flex-column justify-content-center align-items-start">
           <div class="fs-6 fw-bold">Terlambat</div>
-          <div class="test fw-bold days">{{ $rekap->jmlterlambat }} Hari</div>
+          <div class="test fw-bold days">{{ $rekap->jmlterlambat != null ? $rekap->jmlterlambat : "0" }} Hari</div>
         </div>
       </div>
     </div>

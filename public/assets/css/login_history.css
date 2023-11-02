@@ -593,3 +593,21 @@ li:nth-child(n + 2) {
         margin: auto;
     }
 }
+
+/*Izin-Informasi*/
+.date-izin {
+    margin-top: 100px;
+}
+
+.text-keterangan {
+    min-width: 10%;
+}
+
+.content-izin {
+    max-width: 98%;
+    word-wrap: break-all;
+}
+
+.container-fluid p {
+    word-break: break-all; /* Memecah kata-kata yang melebihi batas container */
+}
