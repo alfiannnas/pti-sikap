@@ -20,6 +20,7 @@
                         <div class="col-6">
                             <div class="input-icon mb-3">
                                 <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                        <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
@@ -86,9 +87,9 @@
                             <div class="form-group">
                                 <select name="status_approved" id="status_approved" class="form-select">
                                     <option value="">Pilih Status</option>
-                                    <option value="0" >Pending</option>
-                                    <option value="1" >Disetujui</option>
-                                    <option value="2" >Ditolak</option>
+                                    <option value="0" {{ Request('status_approved') === '0' ? 'selected' : '' }}>Pending</option>
+                                    <option value="1" {{ Request('status_approved') == 1 ? 'selected' : '' }}>Disetujui</option>
+                                    <option value="2" {{ Request('status_approved') == 2 ? 'selected' : '' }}>Ditolak</option>
                                 </select>
                             </div>
                         </div>
@@ -127,19 +128,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($izinsakit as $d)
                             <tr>
-                                <td>1</td>
-                                <td>TGL Izin</td>
-                                <td>NIK</td>
-                                <td>Nama</td>
-                                <td>Jabatan</td>
-                                <td>Status</td></td>
-                                <td>Keterangan</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ date('d-m-Y', strtotime($d->tgl_izin)) }}</td>
+                                <td>{{ $d->nik }}</td>
+                                <td>{{ $d->nama }}</td>
+                                <td>{{ $d->jabatan }}</td>
+                                <td>{{ $d->status == "i" ? "Izin" : "Sakit" }}</td>
+                                <td>{{ $d->keterangan }}</td>
                                 <td>
+                                    @if ($d->status_approved==1)
                                         <span class="badge bg-succes">Disetujui</span>
+                                    @elseif ($d->status_approved==2)
+                                        <span class="badge bg-danger">Ditolak</span>
+                                    @else
+                                        <span class="badge bg-warning">Pending</span>
+                                    @endif
                                 </td>
                                 <td>
-                            
+                                @if ($d->status_approved==0)
                                     <a href="#" class="btn btn-sm btn-primary approve" id_izinsakit = "{{ $d->id }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -150,10 +158,9 @@
                                         Pilih Aksi
                                     </a>
 
-
-
-                                    <form method="POST" action="{{ route('izin.delete', ['id' => $d->id]) }}" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                                    
+                                    <form method="POST" action="{{ route('izin.deleteadmin', ['id' => $d->id]) }}" onsubmit="return confirm('Are you sure you want to delete this record?')">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger badge mt-1" style="background-color: red; color: white;" onmouseover="this.style.backgroundColor='darkred'; this.style.color='white';" onmouseout="this.style.backgroundColor='red'; this.style.color='white';">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="10" />
@@ -164,7 +171,7 @@
                                         </button>                                     
                                     </form>
 
-                            
+                                @else
                                     <a href="/presensi/{{ $d->id }}/batalkanizinsakit" class="btn btn-sm btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -173,20 +180,27 @@
                                         </svg>
                                         Batalkan
                                     </a>
-                                    <form method="POST" action="{{ route('izin.delete', ['id' => $d->id]) }}" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                            
+
+                                    <form method="POST" action="{{ route('izin.deleteadmin', ['id' => $d->id]) }}" onsubmit="return confirm('Are you sure you want to delete this record?')">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger badge mt-1" style="background-color: red; color: white;" onmouseover="this.style.backgroundColor='darkred'; this.style.color='white';" onmouseout="this.style.backgroundColor='red'; this.style.color='white';">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="10" />
                                             <line x1="15" y1="9" x2="9" y2="15" />
                                             <line x1="9" y1="9" x2="15" y2="15" />
                                         </svg>
+                                         Delete
                                         </button>                                     
-                                    </form>  
+                                    </form>
+                                    
+                                @endif    
                                 </td>
                             </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                {{ $izinsakit->links('vendor.pagination.bootstrap-5') }}
             </div>
         </div>
     </div>
@@ -237,5 +251,20 @@
 @endsection
 
 @push('myscript')
+    <script>
+        $(function(){
+            $(".approve").click(function(e){
+                e.preventDefault();
+                var id_izinsakit = $(this).attr("id_izinsakit");
+                $("#id_izinsakit_form").val(id_izinsakit);
+                $("#modal-izinsakit").modal("show");
+            });
 
+            $("#dari, #sampai").datepicker({ 
+            autoclose: true, 
+            todayHighlight: true,
+            format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
 @endpush

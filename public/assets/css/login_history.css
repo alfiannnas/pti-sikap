@@ -10,11 +10,6 @@
     background-position: 650px -1px;
     overflow-y: hidden;
 }
-
-.form-control {
-    height: 50px;
-    width: -20px;
-}
 .container-judul {
     height: 30px;
     width: 1000px;
@@ -90,10 +85,10 @@ a {
         background-color: #ffffff;
         position: absolute;
     }
-    .form-control {
+    /* .form-control {
         height: 50px;
         width: -20px;
-    }
+    } */
     .container-judul {
         height: 20px;
         margin-left: -80px;
@@ -608,6 +603,92 @@ li:nth-child(n + 2) {
     word-wrap: break-all;
 }
 
-.container-fluid p {
-    word-break: break-all; /* Memecah kata-kata yang melebihi batas container */
+.content-izin1 {
+    max-width: 80%;
+}
+
+.btn-unduh {
+    width: 100%;
+}
+
+.ket {
+    background-color: red;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    display: inline-flex;
+    justify-content: end;
+}
+
+span.badge.badge1.bg-success {
+    font-size: 10px;
+    height: 100%;
+    font-weight: 400;
+}
+
+button.btn.btn-primary.btn-unduh {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+/* Tambahkan kelas khusus untuk tombol Anda */
+.custom {
+    background-color: red;
+}
+@media only screen and (max-width: 576px) {
+    .margin1 {
+        margin-left: 30px;
+    }
+    .date-izin {
+        margin-top: 100px;
+    }
+
+    .text-keterangan {
+        min-width: 10%;
+    }
+
+    .content-izin {
+        max-width: 98%;
+        word-wrap: break-all;
+    }
+
+    .btn-unduh {
+        width: 100%;
+    }
+
+    span.badge.badge1.bg-success {
+        font-size: 15px;
+        height: 100%;
+        font-weight: 600;
+    }
+
+    button.btn.btn-primary.btn-unduh {
+        text-align: center;
+        vertical-align: middle;
+        line-height: 15px;
+        font-size: 14px;
+    }
+
+    .rectangle-alasan {
+        background-color: #2073fe;
+        font-weight: 400;
+        font-size: 13px;
+        color: white;
+        width: 100%;
+        display: flex;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .rectangle-alasan p {
+        margin: 0;
+        padding: 5px 5px 5px 5px;
+    }
+    .font-size1 {
+        font-size: 14px;
+    }
 }

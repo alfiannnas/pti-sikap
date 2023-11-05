@@ -41,8 +41,15 @@ Route::middleware(['auth:karyawan'])->group(function (){
     Route::get('/presensi/izin', [PresensiController::class, 'izin']);
     Route::get('/presensi/buatizin', [PresensiController::class, 'buatizin']);
     Route::post('/presensi/storeizin', [PresensiController::class, 'storeizin']);
+    Route::post('/presensi/cekpengajuanizin', [PresensiController::class, 'cekpengajuanizin']);
+    Route::delete('/izin/{id}/delete', [PresensiController::class, 'delete'])->name('izin.delete');
 
     // Bagian Surat Cuti
     Route::get('/presensi/{id}/suratcuti', [PresensiController::class, 'suratcuti']);
     
+    Route::get('/presensi/izinsakit', [PresensiController::class, 'izinsakit']);
+    Route::post('/presensi/approveizinsakit', [PresensiController::class, 'approveizinsakit']);
+    Route::get('/presensi/{id}/batalkanizinsakit', [PresensiController::class, 'batalkanizinsakit']);
+    Route::delete('/izin/{id}/deleteadmin', [PresensiController::class, 'deleteadmin'])->name('izin.deleteadmin');
 });
+
