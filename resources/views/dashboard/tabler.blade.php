@@ -1,20 +1,11 @@
 <!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta19
-* @link https://tabler.io
-* Copyright 2018-2023 The Tabler Authors
-* Copyright 2018-2023 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
-
 
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <title>Dashboard Admin</title>
     <script defer data-api="/stats/api/event" data-domain="preview.tabler.io" src="/stats/js/script.js"></script>
     <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
@@ -78,17 +69,18 @@
   <body >
     <script src="{{ asset('dist/js/demo-theme.min.js?1685973381') }}"></script>
     <div class="page">
+    @include('layouts.admin.sidebar')
       <div class="page-wrapper">
         @yield('content')
         @include('layouts.admin.footer')
       </div>
     </div>
-    <!-- Libs JS -->
+
     <script src="{{ asset('dist/libs/apexcharts/dist/apexcharts.min.js?1685973381') }}" defer></script>
     <script src="{{ asset('dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1685973381') }}" defer></script>
     <script src="{{ asset('dist/libs/jsvectormap/dist/maps/world.js?1685973381') }}" defer></script>
     <script src="{{ asset('dist/libs/jsvectormap/dist/maps/world-merc.js?1685973381') }}" defer></script>
-    <!-- Tabler Core -->
+
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="{{ asset('dist/js/tabler.min.js?1685973381') }}" defer></script>
     <script src="{{ asset('dist/js/demo.min.js?1685973381') }}" defer></script>
