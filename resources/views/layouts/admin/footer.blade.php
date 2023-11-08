@@ -9,11 +9,11 @@
           <ul class="list-inline list-inline-dots mb-0">
             <li class="list-inline-item">
               Copyright &copy; 2023
-              <a href="." class="link-secondary">PT Ressa Abadi</a>.
+              <a href="" class="link-secondary">PT Ressa Abadi</a>.
               All rights reserved.
             </li>
             <li class="list-inline-item">
-              <a href="./changelog.html" class="link-secondary" rel="noopener">
+              <a href="https://www.itera.ac.id/" class="link-secondary" rel="noopener">
                 Institut Teknologi Sumatera
               </a>
             </li>
