@@ -35,7 +35,7 @@
                 <div class="col-lg">
                     <div class="container-tight">
                         <div class="text-center mb-4">
-                            <a href="." class="navbar-brand navbar-brand-autodark"><img src="../../assets/img/logo-sikap.png" width="200" style="margin-top: -25px;" alt=""></a>
+                            <a href="." class="navbar-brand navbar-brand-autodark"><img src="../../assets/img/sikap.png" width="200" style="margin-top: -25px;" alt=""></a>
                         </div>
                         <div class="card card-md">
                             <div class="card-body">
