@@ -73,7 +73,7 @@
                                     1
                                 </div>
                                 <div class="text-muted">
-                                karyawan Telat
+                                Karyawan Telat
                                 </div>
                             </div>
                         </div>
