@@ -26,6 +26,13 @@ Route::middleware(['guest:karyawan'])->group(function (){
     Route::post('/proseslogin', [AuthController::class, 'prosesLogin']);
 });
 
+Route::middleware(['guest:user'])->group(function (){
+    Route::get('/panel', function () {
+        return view('auth.loginadmin');
+    })->name('loginadmin');
+    Route::post('/prosesloginadmin', [AuthController::class, 'prosesloginadmin']);
+});
+
 Route::middleware(['auth:karyawan'])->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/proseslogout', [AuthController::class, 'prosesLogout']);
@@ -53,3 +60,8 @@ Route::middleware(['auth:karyawan'])->group(function (){
     Route::delete('/izin/{id}/deleteadmin', [PresensiController::class, 'deleteadmin'])->name('izin.deleteadmin');
 });
 
+
+Route::middleware(['auth:user'])->group(function (){
+    Route::get('/proseslogoutadmin', [AuthController::class, 'proseslogoutadmin']);
+    Route::get('/panel/dashboardadmin', [DashboardController::class, 'admindashboard']);
+});

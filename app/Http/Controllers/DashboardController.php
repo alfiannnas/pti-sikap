@@ -37,4 +37,18 @@ class DashboardController extends Controller
         ->first();
         return view('dashboard.dashboard', compact('presensihariini', 'bulanini', 'tahunini', 'rekap', 'rekapizin', 'cek'));
     }
+
+    public function admindashboard(){
+        $hariini = date("Y-m-d");
+        $rekap = DB::table('presensi')
+            ->selectRaw('COUNT(nik) as jmlhadir, SUM(IF(jam_in > "09:00",1,0)) as jmlterlambat')
+            ->where('tgl_presensi', $hariini)
+            ->first();
+            
+        $karyawan = DB::table('karyawan')
+            ->selectRaw('COUNT(nik) as jmlkaryawan')
+            ->first();
+
+        return view('dashboard.dashboardAdmin', compact('rekap', 'karyawan'));
+    }
 }
