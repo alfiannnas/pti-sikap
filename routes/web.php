@@ -67,6 +67,7 @@ Route::middleware(['auth:user'])->group(function (){
     Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
     Route::post('/karyawan/{nik}/delete', [KaryawanController::class, 'delete']);
 
+    Route::get('/presensi/izinsakit', [PresensiController::class, 'izinsakit']);
     Route::post('/presensi/approveizinsakit', [PresensiController::class, 'approveizinsakit']);
     Route::get('/presensi/{id}/batalkanizinsakit', [PresensiController::class, 'batalkanizinsakit']);
     Route::delete('/izin/{id}/deleteadmin', [PresensiController::class, 'deleteadmin'])->name('izin.deleteadmin');

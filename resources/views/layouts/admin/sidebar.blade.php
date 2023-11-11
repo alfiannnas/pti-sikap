@@ -5,7 +5,7 @@
       </button>
       <h1 class="navbar-brand navbar-brand-autodark">
         <a href=".">
-          <img src="../../assets/img/sample/photo/digitalforte.png" width="110" height="32" alt="img_digitalforte" class="navbar-brand-image">
+          <img src="../../assets/img/sample/photo/sikap.png"  width="200" alt="img_digitalforte" class="navbar-brand-image">
         </a>
       </h1>
       <div class="navbar-nav flex-row d-lg-none">
