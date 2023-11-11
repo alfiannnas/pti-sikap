@@ -1,25 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
+use Dompdf\Dompdf;
+use App\Models\Presensi;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use App\Models\Pengajuanizin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Pengajuanizin;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Redirect;
-use Carbon\Carbon;
 
 // use PDF;
 
 // use Barryvdh\DomPDF\Facade as PDF;
 // use Barryvdh\DomPDF\PDF as DomPDFPDF;
-use Dompdf\Dompdf;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Contracts\Config\Repository;
 
 class PresensiController extends Controller
 {
@@ -40,9 +41,8 @@ class PresensiController extends Controller
         // -6.397327086594367, 106.83687347311667
         //-6.397319890760971, 106.83686828415709
         // -5.401331034301522, 105.27755498418226
-        // -5.360622211709285, 105.31065544705498
-        $latitudekantor = -5.360622211709285; 
-        $longitudekantor =  105.31065544705498;
+        $latitudekantor = -5.401331034301522; 
+        $longitudekantor =  105.27755498418226;
         $location = explode(',', $lokasi);
         $latitude = $location[0];
         $longitude = $location[1];

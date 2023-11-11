@@ -33,13 +33,14 @@ Route::middleware(['guest:user'])->group(function (){
     Route::post('/prosesloginadmin', [AuthController::class, 'prosesloginadmin']);
 });
 
+
 Route::middleware(['auth:karyawan'])->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/proseslogout', [AuthController::class, 'prosesLogout']);
 
     Route::get('/presensi/create', [PresensiController::class, 'create']);
     Route::post('/presensi/store', [PresensiController::class, 'store']);
-
+    
     Route::get('/history', [HistoryController::class, 'history']);
 
     Route::post('/gethistori', [HistoryController::class, 'gethistori']);
@@ -54,14 +55,19 @@ Route::middleware(['auth:karyawan'])->group(function (){
     // Bagian Surat Cuti
     Route::get('/presensi/{id}/suratcuti', [PresensiController::class, 'suratcuti']);
     
-    Route::get('/presensi/izinsakit', [PresensiController::class, 'izinsakit']);
-    Route::post('/presensi/approveizinsakit', [PresensiController::class, 'approveizinsakit']);
-    Route::get('/presensi/{id}/batalkanizinsakit', [PresensiController::class, 'batalkanizinsakit']);
-    Route::delete('/izin/{id}/deleteadmin', [PresensiController::class, 'deleteadmin'])->name('izin.deleteadmin');
 });
-
 
 Route::middleware(['auth:user'])->group(function (){
     Route::get('/proseslogoutadmin', [AuthController::class, 'proseslogoutadmin']);
     Route::get('/panel/dashboardadmin', [DashboardController::class, 'admindashboard']);
+
+    Route::get('/karyawan', [KaryawanController::class, 'index']);
+    Route::post('/karyawan/store', [KaryawanController::class, 'store']);
+    Route::post('/karyawan/edit', [KaryawanController::class, 'edit']);
+    Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
+    Route::post('/karyawan/{nik}/delete', [KaryawanController::class, 'delete']);
+
+    Route::post('/presensi/approveizinsakit', [PresensiController::class, 'approveizinsakit']);
+    Route::get('/presensi/{id}/batalkanizinsakit', [PresensiController::class, 'batalkanizinsakit']);
+    Route::delete('/izin/{id}/deleteadmin', [PresensiController::class, 'deleteadmin'])->name('izin.deleteadmin');
 });

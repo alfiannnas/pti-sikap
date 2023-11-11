@@ -40,7 +40,4 @@ button {
         top: 45px;
         left: 105px;
     }
-    .datepicker-modal {
-        max-height: 450px !important;
-    }
 }
