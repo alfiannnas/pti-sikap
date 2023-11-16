@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Presensi;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
@@ -118,6 +119,10 @@ class PresensiController extends Controller
         return compact('meters');
     }
 
+    public function monitoring(){
+        return view('presensi.monitoring');
+    }
+
     public function izin()
     {
         $bulanini = date('m') * 1;
@@ -220,36 +225,44 @@ class PresensiController extends Controller
     }
 
     public function suratcuti($id, Repository $config, Filesystem $files, Factory $view)
-{
-    // Ambil data Pengajuanizin berdasarkan ID
-    $pengajuanizin = Pengajuanizin::find($id);
-    $tgl_izin = Pengajuanizin::where('id', $id)->value('tgl_izin');
-
-    if ($pengajuanizin) {
-        $date = Carbon::parse(date('Y-m-d'))->format('j F Y');
-
-        $nama = Auth::guard('karyawan')->user()->nama;
-        $nik = Auth::guard('karyawan')->user()->nik;
-        $jabatan = Auth::guard('karyawan')->user()->jabatan;
-        $tgl_izin = Carbon::parse($tgl_izin)->format('j F Y');
-
-        $data = [
-            'date' => $date,
-            'pengajuanizin' => $pengajuanizin,
-            'nama' => $nama,
-            'nik' => $nik,
-            'jabatan' => $jabatan,
-            'tgl_izin' => $tgl_izin
-        ];
-
-        $dompdf = new Dompdf(); // Buat instansi Dompdf
-        $pdf = new PDF($dompdf, $config, $files, $view, 'A4', 'portrait'); // Gunakan instansi Dompdf, konfigurasi Laravel, Filesystem, dan View Factory sebagai argumen
-        $pdf->loadView('presensi.suratcuti', $data);
-        return $pdf->download('suratcuti.pdf');
-    } else {
-        return "Izin tidak ditemukan."; // Tampilkan pesan jika izin tidak ditemukan
+    {
+        // Ambil data Pengajuanizin berdasarkan ID
+        $pengajuanizin = Pengajuanizin::find($id);
+        $tgl_izin = Pengajuanizin::where('id', $id)->value('tgl_izin');
+        $imagePath = public_path('assets/img/TTD PT Ressa Abadi.png');
+        $imageData = base64_encode(file_get_contents($imagePath));
+    
+        if ($pengajuanizin) {
+            $date = Carbon::parse(date('Y-m-d'))->format('j F Y');
+        
+            $nama = Auth::guard('karyawan')->user()->nama;
+            $nik = Auth::guard('karyawan')->user()->nik;
+            $jabatan = Auth::guard('karyawan')->user()->jabatan;
+            $tgl_izin = Carbon::parse($tgl_izin)->format('j F Y');
+        
+            $data = [
+                'date' => $date,
+                'pengajuanizin' => $pengajuanizin,
+                'nama' => $nama,
+                'nik' => $nik,
+                'jabatan' => $jabatan,
+                'tgl_izin' => $tgl_izin,
+                'imagePath' => $imagePath,
+                'imageData' => $imageData
+            ];
+        
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+            $options->set('tempDir', 'assets/img/TTD PT Ressa Abadi.png');
+            $dompdf = new Dompdf($options);
+            $pdf = new PDF($dompdf, $config, $files, $view, 'A4', 'portrait'); // Gunakan instansi Dompdf, konfigurasi Laravel, Filesystem, dan View Factory sebagai argumen
+            $pdf->loadView('presensi.suratcuti', $data);
+            $pdf->render();
+            return $pdf->download('suratcuti.pdf');
+        } else {
+            return "Izin tidak ditemukan."; // Tampilkan pesan jika izin tidak ditemukan
+        }
     }
-}
 
     public function delete($id)
         {
