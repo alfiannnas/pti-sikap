@@ -13,6 +13,7 @@ class Pengajuanizin extends Model
     public function permittedOnDay($tahun, $bulan, $day, $nik) {
         return $this->whereDate('tgl_izin', '=', "$tahun-$bulan-$day")
         ->where('nik', $nik)
+        ->where('status_approved', 1)
         ->exists();
     }
 }

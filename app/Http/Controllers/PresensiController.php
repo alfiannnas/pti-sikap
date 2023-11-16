@@ -42,9 +42,10 @@ class PresensiController extends Controller
         // -6.397327086594367, 106.83687347311667
         //-6.397319890760971, 106.83686828415709
         // -5.401331034301522, 105.27755498418226
+        // -5.39676863777419, 105.27800302889982
         //-5.360504970617766, 105.31110393706061
-        $latitudekantor = -5.360504970617766; 
-        $longitudekantor =  105.31110393706061;
+        $latitudekantor = -5.39676863777419; 
+        $longitudekantor =  105.27800302889982;
         $location = explode(',', $lokasi);
         $latitude = $location[0];
         $longitude = $location[1];
@@ -71,7 +72,7 @@ class PresensiController extends Controller
             echo "Radius_Error|Anda Berada di Luar Radius";
         }else{
             if ($cek > 0){
-                if($jam < "17:00"){
+                if($jam < "11:00"){
                     echo "Error|Belum Jam Pulang";
                 }else{
                 $data_pulang = [
@@ -121,6 +122,42 @@ class PresensiController extends Controller
 
     public function monitoring(){
         return view('presensi.monitoring');
+    }
+
+    public function getpresensi(Request $request){
+        $tanggal = $request->tanggal;
+        $presensi = DB::table('presensi')
+        ->select('presensi.*', 'nama', 'jabatan', 'no_hp')
+        ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+        ->where('tgl_presensi', $tanggal)
+        ->get();
+
+        return view('presensi.getpresensi', compact('presensi'));
+    }
+
+    public function laporan(){
+        $namabulan = ['', "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "October", "November", "December"];
+        $get_karyawan = DB::table('karyawan')
+        ->select('karyawan.nik', 'karyawan.nama')
+        ->get();
+
+        return view('presensi.laporan', compact('namabulan', 'get_karyawan'));
+    }
+
+    public function cetak(Request $request){
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $namabulan = ['', "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $izin = new Pengajuanizin();
+
+        $presensi = Presensi::select('presensi.nik', 'karyawan.nama')
+            ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik') // Join the 'karyawan' table
+            ->whereYear('tgl_presensi', $tahun)
+            ->whereMonth('tgl_presensi', $bulan)
+            ->groupBy('presensi.nik', 'karyawan.nama')
+            ->get();
+
+        return view('presensi.cetaklaporan', compact('bulan', 'tahun', 'namabulan', 'presensi', "izin"));
     }
 
     public function izin()

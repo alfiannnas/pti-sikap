@@ -14,13 +14,7 @@ class Presensi extends Model
     public function attendedOnDay($tahun, $bulan, $day, $nik) {
         return $this->whereDate('tgl_presensi', '=', "$tahun-$bulan-$day")
         ->where('nik', $nik)
+        ->where('jam_out', '<>', '')
         ->exists();
     }
-
-    public function permittedOnDay($tahun, $bulan, $day, $nik) {
-        return $this->whereDate('tgl_izin', '=', "$tahun-$bulan-$day")
-        ->where('nik', $nik)
-        ->exists();
-    }
-
 }
