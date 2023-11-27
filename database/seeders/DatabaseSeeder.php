@@ -27,9 +27,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::create([
-            'name'=>'William',
-            'email'=>'william@gmail.com',
+            'name'=>'Admin',
+            'email'=>'Admin@gmail.com',
             'password'=>'$2y$10$JG5pz/Fw7YN1G8g6V.K7i.arAUhapRlX9VlUNZBUqLIq7ZsAlTS0K',
+        ]);
+
+        \App\Models\Setting::create([
+            'longitude'=>'-5.401355592834919',
+            'latitude'=>'105.27754380630695',
+            'jam_masuk'=>'09:00',
+            'jam_keluar'=>'17:00',
         ]);
     }
 }
