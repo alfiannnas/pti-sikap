@@ -43,7 +43,7 @@
 
 <!-- Set "A5", "A4" or "A3" for class name -->
 <!-- Set also "landscape" if you need -->
-<body class="A3 landscape">
+<body class="A4 landscape">
 
   <!-- Each sheet element should have the class "sheet" -->
   <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
@@ -102,9 +102,21 @@
         @endforeach
       </tbody>
     </table>
-
+    <button id="printButton" class="btn btn-primary">Cetak Laporan</button>
   </section>
 
+<script>
+  document.getElementById('printButton').addEventListener('click', function() {
+    window.print();
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'p') {
+      event.preventDefault();
+      window.print();
+    }
+  });
+</script>
 </body>
 
 </html>
