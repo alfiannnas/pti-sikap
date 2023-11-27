@@ -10,6 +10,7 @@ class Setting extends Model
     use HasFactory;
     protected $table = 'setting';
     protected $primaryKey = 'id';
+    public $timestamps = false; // Add this line
 
     protected $fillable = [
         'longitude',
