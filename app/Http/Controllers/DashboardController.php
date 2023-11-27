@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $tahunini = date('Y');
         $nik = Auth::guard('karyawan')->user()->nik;
         $presensihariini = DB::table('presensi')->where('nik', $nik)->where('tgl_presensi',$hari)->first();
+        $gps = DB::table('setting')->select('latitude', 'longitude', 'jam_masuk', 'jam_keluar')->first();
         $cek = DB::table('presensi')
             ->where('nik', $nik)
             ->where('tgl_presensi', $hari)
@@ -22,7 +23,7 @@ class DashboardController extends Controller
             ->first();
 
         $rekap = DB::table('presensi')
-            ->selectRaw('COUNT(jam_out) as jmlhadir, SUM(IF(jam_in > "09:00",1,0)) as jmlterlambat')
+            ->selectRaw('COUNT(jam_out) as jmlhadir, SUM(IF(jam_in >"'.  $gps->jam_masuk  .'",1,0)) as jmlterlambat')
             ->where('nik', $nik)
             ->whereRaw('MONTH(tgl_presensi)="' . $bulanini . '"')
             ->whereRaw('YEAR(tgl_presensi)="' . $tahunini . '"')
@@ -40,8 +41,9 @@ class DashboardController extends Controller
 
     public function admindashboard(){
         $hariini = date("Y-m-d");
+        $gps = DB::table('setting')->select('latitude', 'longitude', 'jam_masuk', 'jam_keluar')->first();
         $rekap = DB::table('presensi')
-            ->selectRaw('COUNT(jam_out) as jmlhadir, SUM(IF(jam_in > "09:00",1,0)) as jmlterlambat')
+            ->selectRaw('COUNT(jam_out) as jmlhadir, SUM(IF(jam_in >"'.  $gps->jam_masuk .'",1,0)) as jmlterlambat')
             ->where('tgl_presensi', $hariini)
             ->first();
             

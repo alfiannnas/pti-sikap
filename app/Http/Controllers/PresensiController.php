@@ -29,7 +29,8 @@ class PresensiController extends Controller
         $hariini = date('Y-m-d');
         $nik = Auth::guard('karyawan')->user()->nik;
         $data = DB::table('presensi')->where('tgl_presensi', $hariini)->where('nik', $nik)->count();
-        return view('presensi.presensi', compact('data'));
+        $gps = DB::table('setting')->select('latitude', 'longitude')->first();
+        return view('presensi.presensi', compact('data', 'gps'));
     }
 
     public function store(Request $request){
@@ -37,6 +38,7 @@ class PresensiController extends Controller
         $tgl_presensi = date('Y-m-d');
         $jam = date("H:i:s");
         $lokasi = $request->lokasi;
+        $gps = DB::table('setting')->select('latitude', 'longitude', 'jam_masuk', 'jam_keluar')->first();
         // -6.223910949538835, 106.64876614782546
         //-6.224833003263079, 106.6498009576709
         // -6.397327086594367, 106.83687347311667
@@ -44,8 +46,9 @@ class PresensiController extends Controller
         // -5.401331034301522, 105.27755498418226
         // -5.39676863777419, 105.27800302889982
         //-5.360504970617766, 105.31110393706061
-        $latitudekantor = -5.39676863777419; 
-        $longitudekantor =  105.27800302889982;
+        // -5.360885718092403, 105.3107323846574
+        $latitudekantor =  $gps->longitude;
+        $longitudekantor =  $gps->latitude;
         $location = explode(',', $lokasi);
         $latitude = $location[0];
         $longitude = $location[1];
@@ -72,7 +75,7 @@ class PresensiController extends Controller
             echo "Radius_Error|Anda Berada di Luar Radius";
         }else{
             if ($cek > 0){
-                if($jam < "11:00"){
+                if($jam < $gps->jam_keluar){
                     echo "Error|Belum Jam Pulang";
                 }else{
                 $data_pulang = [
@@ -147,15 +150,27 @@ class PresensiController extends Controller
     public function cetak(Request $request){
         $bulan = $request->bulan;
         $tahun = $request->tahun;
+        $nik = $request->nik;
+        $nama = $request->nama;
         $namabulan = ['', "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
         $izin = new Pengajuanizin();
 
-        $presensi = Presensi::select('presensi.nik', 'karyawan.nama')
-            ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik') // Join the 'karyawan' table
-            ->whereYear('tgl_presensi', $tahun)
-            ->whereMonth('tgl_presensi', $bulan)
-            ->groupBy('presensi.nik', 'karyawan.nama')
-            ->get();
+        if(!empty($request->nik)){
+            $presensi = Presensi::select('presensi.nik', 'karyawan.nama')
+                ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik') // Join the 'karyawan' table
+                ->whereYear('tgl_presensi', $tahun)
+                ->whereMonth('tgl_presensi', $bulan)
+                ->where('presensi.nik', $nik)
+                ->groupBy('presensi.nik', 'karyawan.nama')
+                ->get(); 
+        }else{
+            $presensi = Presensi::select('presensi.nik', 'karyawan.nama')
+                ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik') // Join the 'karyawan' table
+                ->whereYear('tgl_presensi', $tahun)
+                ->whereMonth('tgl_presensi', $bulan)
+                ->groupBy('presensi.nik', 'karyawan.nama')
+                ->get();
+        }    
 
         return view('presensi.cetaklaporan', compact('bulan', 'tahun', 'namabulan', 'presensi', "izin"));
     }
@@ -325,5 +340,28 @@ class PresensiController extends Controller
             $izin->delete();
 
             return redirect()->back()->with('success', 'Record deleted successfully.');
+        }
+    
+    public function setting()
+        {
+            $setting = DB::table('setting')->where('id', 1)->first();
+            return view('presensi.setting', compact('setting'));
+        }
+
+    public function simpansetting(Request $request){
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+        $jam_masuk = $request->jam_masuk;
+        $jam_keluar = $request->jam_keluar;
+        $data = [
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'jam_masuk' => $jam_masuk,
+            'jam_keluar' => $jam_keluar
+        ];
+
+        $update = DB::table('setting')->where('id', 1)->update($data);
+
+        return redirect()->back();
         }
 }
