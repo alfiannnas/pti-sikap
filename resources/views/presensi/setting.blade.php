@@ -5,6 +5,9 @@
 
 <!-- Include Flatpickr JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <div class="page-header d-print-none">
     <div class="container-xl">
@@ -30,7 +33,7 @@
                             <h2 class="mt-2">Lokasi Kantor</h2>
                                 <div class="col-12">
                                     <div class="form-group" style="margin-top: 0px;">
-                                        Longitude
+                                        Latitude
                                         <div class="input-icon mb-2">
                                             <span class="input-icon-addon">
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/user -->
@@ -45,7 +48,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         
-                                    Latitude
+                                    Longitude
                                         <div class="input-icon mb-3">
                                             <span class="input-icon-addon">
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/user -->
@@ -56,12 +59,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                             <h2 class="mt-3">Jam Masuk dan Jam Keluar</h2>
                  
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <div class="input-icon mb-3">
+                                        Jam Masuk
+                                        <div class="input-icon mb-2">
                                             <span class="input-icon-addon">
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,9 +86,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
+                                        Jam Keluar
                                         <div class="input-icon mb-3">
                                             <span class="input-icon-addon">
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/user -->
@@ -100,6 +105,7 @@
 </svg>
 
                                             </span>
+                                            
                                             <input type="text" class="form-control" placeholder="Jam Keluar" name="jam_keluar" id="jam_keluar" value="{{ $setting->jam_keluar }}">
 
 
@@ -111,7 +117,7 @@
                             <div class="row mt-2">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                                        <button type="submit" class="btn btn-primary" name="simpan" onclick="showSuccessAlert()">Sismpan</button>
                                     </div>
                                 </div>
                             </div>
@@ -137,5 +143,15 @@
         dateFormat: "H:i",
         clickOpens: true,
     });
+</script>
+<script>
+    function showSuccessAlert() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Data Saved Successfully!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 </script>
 @endsection

@@ -5,7 +5,7 @@
       </button>
       <h1 class="navbar-brand navbar-brand-autodark">
       <a href=".">
-          <img src="../../assets/img/logopti.png" alt="img_digitalforte" class="navbar-brand-image" style="width: 120px; height:auto">
+          <img src="../../assets/img/logopti.png" alt="ressa-abadi" class="navbar-brand-image" style="width: 120px; height:auto">
         </a>
       </h1>
       <div class="navbar-nav flex-row d-lg-none">
