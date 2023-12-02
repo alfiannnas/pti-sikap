@@ -38,6 +38,11 @@
       font-size: 10px;
       padding: 5px;
     }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
   </style>
 </head>
 
@@ -52,21 +57,21 @@
     <table style="width: 100%;" >
       <tr>
         <td style="width: 30px; height: 30px;">
-          <img src="{{ asset('assets/img/logopti.png') }}" width="120">
+          <img style="margin-right:20px;" src="{{ asset('assets/img/pt-rab.png') }}" width="120">
         </td>
         <td> 
           <span id='judul'>
             PT. Ressa Abadi Bersama<br>
             Laporan Presensi Karyawan Bulan {{ $namabulan[$bulan] }} {{ $tahun }}
           </span><br>
-          <span style="line-height: 5px;">Jalan soekarno hatta no 28, Tanjung seneng, Bandarlampung</span>
+          <span style="line-height: 5px;">Jl. Soekarno Hatta No. 28, Tanjung Seneng, Bandar Lampung</span>
         </td>
       </tr>
     </table>
     <table class="tablepresensi">
       <thead>
         <tr>
-          <th>Nik</th>
+          <th>NIK</th>
           <th>Nama Karyawan</th>
           @for ($day = 1; $day <= 31; $day++)
             <th>{{ $day }}</th>
@@ -102,6 +107,23 @@
         @endforeach
       </tbody>
     </table>
+    <p>Keterangan</p>
+    <div class="container">
+      <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M5 12l5 5l10 -10"></path>
+      </svg>
+      <span>Hadir</span>
+      </div>
+      <div style="margin-top:20px;margin-bottom:20px">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M5 12l5 5l10 -10"></path>
+      </svg>
+      <span>Cuti</span>
+      </div>
+    </div>
     <button id="printButton" class="btn btn-primary">Cetak Laporan</button>
   </section>
 
