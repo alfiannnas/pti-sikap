@@ -18,9 +18,36 @@
             margin-left: 10px;
             margin-right: 10px;
         }
+
+        #judul {
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .garis1{
+            border-top:3px solid black;
+            height: 2px;
+            border-bottom:1px solid black;
+        }
     </style>
 </head>
 <body>
+<table style="width: 100%;" >
+      <tr>
+        <td style="width: 30px; height: 30px;">
+          <img style="margin-right:10px;" src="{{ asset('assets/img/pt-rab.png') }}" width="80">
+        </td>
+        <td style="text-align:center"> 
+          <p id='judul' style="line-height: 2.5px;">
+            PT. Ressa Abadi Bersama<br>
+          </p>
+          <p style="line-height: 2.5px; font-style: italic;">Jl. Soekarno Hatta No. 28, Tanjung Seneng, Bandar Lampung</p>
+          <p style="line-height: 2.5px; font-style: italic;">e-mail: <span style="text-decoration: underline; color: blue;">ptressaabadi@gmail.com</span></p>
+        </td>
+      </tr>
+    </table>
+    <hr class="garis1"/>
     <div class="content" style="text-align: right;">
         <span>Bandar Lampung, {{ $date }}</span>
     </div>
