@@ -14,9 +14,6 @@
   <!-- Set page size here: A5, A4 or A3 -->
   <!-- Set also "landscape" if you need -->
   <style>
-    @page { 
-      size: A4 
-    }
     #judul {
       font-family: Helvetica, sans-serif;
       font-weight: bold;
@@ -42,6 +39,13 @@
     .container {
       display: flex;
       flex-direction: column;
+    }
+
+    /* Hide print button in print mode */
+    @media print {
+      .btn-print {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -124,7 +128,7 @@
       <span>Cuti</span>
       </div>
     </div>
-    <button id="printButton" class="btn btn-primary">Cetak Laporan</button>
+    <button id="printButton" class="btn btn-primary btn-print">Cetak Laporan</button>
   </section>
 
 <script>
