@@ -71,7 +71,7 @@ crossorigin=""/>
      crossorigin=""></script>
 @endsection
 @section('content')
-<div class='row' style='margin-top: 70px'>
+<div class='row' style='margin-top: 20px'>
     <div class="col">
         <input type='hide' id='lokasi' style="display: none;"> 
         <div class='webcam-capture'></div> 
