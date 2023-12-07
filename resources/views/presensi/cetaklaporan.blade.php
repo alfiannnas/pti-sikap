@@ -95,7 +95,15 @@
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M5 12l5 5l10 -10"></path>
                   </svg>
-                        
+                
+                @elseif ($data->lateOnDay($tahun, $bulan, $day, $data->nik))
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-t" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path style="stroke: red;" d="M6 4l12 0" />
+                    <path style="stroke: red;" d="M12 4l0 16" />
+                    <path d="M12 4l0 16" />
+                  </svg>
+
                 @elseif ($izin->permittedOnDay($tahun, $bulan, $day, $data->nik))
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="red" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

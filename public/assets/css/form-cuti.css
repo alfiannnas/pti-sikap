@@ -32,7 +32,7 @@ button {
 }
 
 .datepicker-modal {
-    max-height: 330px !important;
+    max-height: 1000px !important;
 }
 
 @media only screen and (max-width: 576px) {

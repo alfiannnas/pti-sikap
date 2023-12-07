@@ -57,7 +57,7 @@
     </div>
   </div>
   <div class="small-font fw-bolder my-4">
-    <p class="subtitle">Absensi Bulan <span class="purple">Maret</span></p>
+    <p class="subtitle">Absensi Bulan <span class="purple">{{ $namabulan[$bulanini] }}</span></p>
   </div>
   <div class="row gx-0 info-row mb-5">
     <div class="col-6 col-md-3 info-container">

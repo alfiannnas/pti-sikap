@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
+        $namabulan = ['', "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
         $hari = date("Y-m-d");
         $bulanini = date('m') * 1;
         $tahunini = date('Y');
@@ -36,7 +37,7 @@ class DashboardController extends Controller
         ->whereRaw('YEAR(tgl_izin)="' . $tahunini . '"')
         ->where('status_approved', 1)
         ->first();
-        return view('dashboard.dashboard', compact('presensihariini', 'bulanini', 'tahunini', 'rekap', 'rekapizin', 'cek'));
+        return view('dashboard.dashboard', compact('presensihariini', 'bulanini', 'tahunini', 'rekap', 'rekapizin', 'cek', 'namabulan'));
     }
 
     public function admindashboard(){
