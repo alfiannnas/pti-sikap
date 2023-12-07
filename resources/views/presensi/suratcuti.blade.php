@@ -48,25 +48,14 @@
       </tr>
     </table>
     <hr class="garis1"/>
-    <div class="content" style="text-align: right;">
-        <span>Bandar Lampung, {{ $date }}</span>
-    </div>
-    <div class="content">
-        <span style="line-height: 1.5 ;">Kepada Yth.</span>
-    </div>
-    <div class="content">
-        <span style="line-height: 1.5 ;">Bpk/Ibu Pimpinan PT. Ressa Abadi</span>
-    </div>
-    <div class="content">
-        <span style="line-height: 1.5 ;">Di tempat.</span>
-    </div>
     <br>
     <div class="content">
-        <span style="line-height: 1.5 ;">Dengan hormat,</span>
+        <span style="line-height: 1.5 ;">Bandar Lampung, {{ $date }}</span>
     </div>
     <div class="content">
-        <span style="line-height: 1.5 ;">Saya yang bertanda tangan di bawah ini :</span>
+        <span style="line-height: 0.8 ;">Perihal: Cuti</span>
     </div>
+    <br>
     <div class="content">
         <span style="line-height: 0.8 ;">Nama</span>
         <span style="line-height: 0.8 ; text-indent: 20px; display: inline-block;">:</span>
@@ -82,31 +71,27 @@
         <span style="line-height: 1.5 ;text-indent: 20px;">:</span>
         <span style="line-height: 1.5 ;">{{ $jabatan }}</span>
     </div>
+    <br>
     <div class="content">
-        <span style="line-height: 2 ;">Dengan surat ini saya bermaksud untuk meminta cuti untuk tidak masuk kerja pada hari {{ $tgl_izin }} dikarenakan 
-            @if ($pengajuanizin->status === 'i')
-                izin.
-            @elseif ($pengajuanizin->status === 's')
-                sakit.
-            @else
-                {{ $pengajuanizin->status }}
-            @endif
+        <span style="line-height: 2 ;">Dengan ini kami memberikan cuti sesuai permintaan saudara dengan memperhatikan persyaratan dan ketentuan yang berlaku.
         </span>
     </div>
     <div class="content">
         <span style="line-height: 2 ;">
-            Demikian surat cuti ini, mohon kiranya untuk dapat dimaklumi. Atas perhatian serta cuti yang diberikan, saya mengucapkan terima kasih.
+            Demikian surat cuti kami sampaikan. Terima Kasih atas perhatiannya
         </span>
     </div>
     <br>
     <br>
     <br>
-    <div class="content">
-        <p style="line-height: 0.1 ; text-indent: 20px;">Direktur</p>
-    </div>
-    <img src="data:image/png;base64,'.{{ $imageData }}.'" style="width:115px; height:85px">
-    <div class="content">
-        <p style="line-height: 0.5 ;">Stefan Yesaya</p>
+    <div style="text-align: right">
+        <div class="content">
+            <p style="line-height: 0.1 ; text-indent: -20px;">Hormat Saya,</p>
+        </div>
+        <img src="data:image/png;base64,'.{{ $imageData }}.'" style="width:115px; height:85px">
+        <div class="content">
+            <p style="line-height: 0.5 ;">Stefan Yesaya</p>
+        </div>
     </div>
 </body>
 </html>
