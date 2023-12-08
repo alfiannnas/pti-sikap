@@ -48,13 +48,16 @@
       </tr>
     </table>
     <hr class="garis1"/>
-    <br>
     <div class="content">
         <span style="line-height: 1.5 ;">Bandar Lampung, {{ $date }}</span>
     </div>
     <div class="content">
-        <span style="line-height: 0.8 ;">Perihal: Cuti</span>
+        <span style="line-height: 0.8 ;">Perihal: Konfirmasi Penerimaan Permohonan Cuti</span>
     </div>
+    <br>
+    <div class="content">
+        <span style="line-height: 0.8 ;">Dengan hormat,</span>
+    </div>   
     <br>
     <div class="content">
         <span style="line-height: 0.8 ;">Nama</span>
@@ -73,16 +76,17 @@
     </div>
     <br>
     <div class="content">
-        <span style="line-height: 2 ;">Dengan ini kami memberikan cuti sesuai permintaan saudara dengan memperhatikan persyaratan dan ketentuan yang berlaku.
+        <span style="line-height: 2 ;">Sehubungan dengan permohonan cuti yang Anda ajukan pada tanggal {{ $date }}, kami ingin memberitahukan bahwa permohonan cuti Anda telah diperiksa dan disetujui oleh perusahaan.
         </span>
     </div>
     <div class="content">
-        <span style="line-height: 2 ;">
-            Demikian surat cuti kami sampaikan. Terima Kasih atas perhatiannya
+        <span style="line-height: 2 ;">Kami menghargai upaya Anda dalam memberikan pemberitahuan sebelumnya dan mengajukan permohonan ini sesuai dengan kebijakan perusahaan. Keputusan ini telah dipertimbangkan dengan cermat untuk memastikan kelancaran operasional perusahaan.
         </span>
     </div>
-    <br>
-    <br>
+    <div class="content">
+        <span style="line-height: 2 ;">Selama absen Anda, kami mohon untuk memastikan bahwa pekerjaan Anda sudah dikomunikasikan dengan rekan tim yang relevan atau ada langkah-langkah yang diambil untuk menangani tanggung jawab Anda agar proses operasional tetap berjalan dengan baik.
+        </span>
+    </div>
     <br>
     <div style="text-align: right">
         <div class="content">
