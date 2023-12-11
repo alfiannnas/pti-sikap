@@ -49,7 +49,7 @@
     </table>
     <hr class="garis1"/>
     <div class="content">
-        <span style="line-height: 1.5 ;">Bandar Lampung, {{ $date }}</span>
+        <span style="line-height: 1.5 ;">Bandar Lampung, {{ \Carbon\Carbon::parse($date)->translatedFormat('d F Y') }}</span>
     </div>
     <div class="content">
         <span style="line-height: 0.8 ;">Perihal: Konfirmasi Penerimaan Permohonan Cuti</span>
@@ -76,7 +76,7 @@
     </div>
     <br>
     <div class="content">
-        <span style="line-height: 2 ;">Sehubungan dengan permohonan cuti yang Anda ajukan pada tanggal {{ $date }}, kami ingin memberitahukan bahwa permohonan cuti Anda telah diperiksa dan disetujui oleh perusahaan.
+        <span style="line-height: 2 ;">Sehubungan dengan permohonan cuti yang Anda ajukan pada tanggal {{ \Carbon\Carbon::parse($date)->translatedFormat('d F Y') }}, kami ingin memberitahukan bahwa permohonan cuti Anda telah diperiksa dan disetujui oleh perusahaan.
         </span>
     </div>
     <div class="content">

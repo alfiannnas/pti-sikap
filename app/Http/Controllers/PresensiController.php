@@ -293,7 +293,7 @@ class PresensiController extends Controller
             $tgl_izin = Carbon::parse($tgl_izin)->format('j F Y');
         
             $data = [
-                'date' => $date,
+                'date' => $date, 
                 'pengajuanizin' => $pengajuanizin,
                 'nama' => $nama,
                 'nik' => $nik,
